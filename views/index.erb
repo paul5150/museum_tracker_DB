@@ -1,0 +1,39 @@
+<h1>Museum Tracker</h1>
+
+<p>Museums:</p>
+
+<form action="/museums" method="post">
+  <label for="name">Assign a name to your Museum:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add museum</button>
+</form>
+
+<p> Add art to any Museum:</p>
+
+<form action="/artworks" method="post">
+  <label for="museum_id">Select a Museum</label>
+  <select id='museum_id' name='museum_id' type='text'>
+    <% @museums.each() do |museum| %>
+    <option value="<%= museum.id()%>"> <%= museum.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for="description">Description of the art:</label>
+  <input id="description" name="description" type="text">
+
+  <button type="submit">Add art</button>
+</form>
+
+
+<% if @museums.any?() %>
+<p>Click on a museum to see its art:</p>
+
+<ul>
+  <% @museums.each do |museum| %>
+  <li><a href="/museums/<%= museum.id() %>"><%= museum.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no museums yet!</p>
+<% end %>

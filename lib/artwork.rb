@@ -24,4 +24,9 @@ class Artwork
   define_method(:==) do |another_artwork|
     self.description().==(another_artwork.description())&(self.museum_id().==(another_artwork.museum_id()))
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM museums WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM artworks WHERE museum_id = #{self.id()};")
+  end
 end

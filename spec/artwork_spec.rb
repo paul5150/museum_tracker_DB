@@ -9,7 +9,7 @@ describe(Artwork) do
   end
 
   describe("#save") do
-    it("adds a task to the array of saved artworks") do
+    it("adds an artwork to the array of saved artworks") do
       test_artwork = Artwork.new({:description => "The Thinker", :museum_id => 1})
       test_artwork.save()
       expect(Artwork.all()).to(eq([test_artwork]))
@@ -29,4 +29,26 @@ describe(Artwork) do
       expect(test_artwork.museum_id()).to(eq(1))
     end
   end
+
+  describe("#==") do
+    it("is the same artwork if it has the same description and museum ID") do
+      artwork1 = Artwork.new({:description => "the painting", :museum_id => 1})
+      artwork2 = Artwork.new({:description => "the painting", :museum_id => 1})
+      expect(artwork1).to(eq(artwork2))
+    end
+  end
+
+  describe("#delete") do
+    it("deletes a museums's art from the database") do
+      museum = Museum.new({:name => "Portland Museum", :id => nil})
+      museum.save()
+      artwork = Artwork.new({:description => "the rock", :museum_id => museum.id()})
+      artwork.save()
+      artwork2 = Artwork.new({:description => "the sky", :museum_id => museum.id()})
+      artwork2.save()
+      museum.delete()
+      expect(Artwork.all()).to(eq([]))
+    end
+  end
+
 end
