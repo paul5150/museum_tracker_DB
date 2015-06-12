@@ -25,3 +25,16 @@ describe('viewing all of the Museums', {:type => :feature}) do
     expect(page).to have_content(museum.name)
   end
 end
+
+describe('seeing art for a single museum', {:type => :feature}) do
+  it('allows a user to click a museum to see the art') do
+    test_museum = Museum.new({:name => 'Maine Art', :id => nil})
+    test_museum.save()
+    test_artwork = Artwork.new({:description => "rocks", :museum_id => test_museum.id()})
+    test_artwork.save()
+    visit('/')
+    click_button("Add art")
+    visit('/museums/id')
+    expect(page).to have_content(test_artwork.description())
+  end
+end
