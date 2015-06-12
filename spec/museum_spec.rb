@@ -59,4 +59,24 @@ end
         expect(test_museum.artworks()).to(eq([test_artwork, test_artwork2]))
       end
     end
+
+    describe("#update") do
+      it("lets you update museums in the database") do
+        museum = Museum.new({:name => "Maine Museum", :id => nil})
+        museum.save()
+        museum.update({:name => "Bangor Museum"})
+        expect(museum.name()).to(eq("Bangor Museum"))
+      end
+    end
+
+    describe("#delete") do
+      it("lets you delete a museum from the database") do
+        museum = Museum.new({:name => "Maine Museum", :id => nil})
+        museum.save()
+        museum2 = Museum.new({:name => "Bangor Museum", :id => nil})
+        museum2.save()
+        museum.delete()
+        expect(Museum.all()).to(eq([museum2]))
+      end
+    end
  end
