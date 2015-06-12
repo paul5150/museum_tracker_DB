@@ -7,7 +7,7 @@
 
 <ul>
   <% @museum.artworks.each() do |artwork| %>
-  <li><% artwork.museum_id() %><%= artwork.description() %></li>
+  <li><a href="<% artwork.museum_id() %>"</a><%= artwork.description() %></li>
   <% end %>
 </ul>
 

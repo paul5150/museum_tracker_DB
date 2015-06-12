@@ -71,8 +71,14 @@ delete("/museums/:id") do
   @museum = Museum.find(params.fetch("id").to_i())
   @museum.delete()
   @museums = Museum.all()
+  @artwork = Artwork.find(params.fetch("id").to_i())
+  @artwork.delete()
+  @artworks = Artwork.all()
   erb(:index)
 end
+
+
+
 
 post("/artworks") do
   description = params.fetch("description")
