@@ -8,4 +8,11 @@ describe(Artwork) do
     end
   end
 
+  describe("#save") do
+    it("adds a task to the array of saved artworks") do
+      test_artwork = Artwork.new({:description => "The Thinker", :museum_id => 1})
+      test_artwork.save()
+      expect(Artwork.all()).to(eq([test_artwork]))
+    end
+  end
 end

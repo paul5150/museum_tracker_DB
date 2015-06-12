@@ -11,9 +11,17 @@ class Artwork
     artworks = []
     returned_artworks.each() do |artwork|
       description = artwork.fetch("description")
-      list_id = artwork.fetch("museum_id").to_i()
+      museum_id = artwork.fetch("museum_id").to_i()
       artworks.push(Artwork.new({:description => description, :museum_id => museum_id}))
     end
     artworks
+  end
+
+  define_method(:save) do
+    DB.exec("INSERT INTO artworks (description, museum_id) VALUES ('#{@description}', #{@museum_id});")
+  end
+
+  define_method(:==) do |another_artwork|
+    self.description().==(another_artwork.description())&(self.museum_id().==(another_artwork.museum_id()))
   end
 end
