@@ -78,5 +78,16 @@ end
         museum.delete()
         expect(Museum.all()).to(eq([museum2]))
       end
+
+      it("deletes a museum's artworks from the database") do
+        museum = Museum.new({:name => "Portland Museum", :id => nil})
+        museum.save()
+        artwork = Artwork.new({:description => "painting", :museum_id => museum.id()})
+        artwork.save()
+        artwork2 = Artwork.new({:description => "statue", :museum_id => museum.id()})
+        artwork2.save()
+        museum.delete()
+        expect(Artwork.all()).to(eq([]))
+      end
     end
  end
