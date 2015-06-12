@@ -40,3 +40,13 @@ describe('seeing art for a single museum', {:type => :feature}) do
     expect(page).to have_content(test_artwork.description())
   end
 end
+
+# describe('deleting a museum', {:type => :feature}) do
+#   it('allows a user to delete a museum') do
+#     test_museum = Museum.new({:name => 'Maine Art', :id => nil})
+#     test_museum.save()
+#     visit('/museums')
+#     click_button('Delete Museum')
+#     expect(page).to have_content("Museum Tracker")
+#   end
+# end

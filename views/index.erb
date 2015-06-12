@@ -1,6 +1,6 @@
 <h1>Museum Tracker</h1>
 
-<p>Museums:</p>
+<h4>Museums:</h4>
 
 <form action="/museums" method="post">
   <label for="name">Assign a name to your Museum:</label>
@@ -9,7 +9,8 @@
   <button type="submit">Add museum</button>
 </form>
 
-<p> Add art to any Museum:</p>
+<hr>
+<h4> Add art to any Museum:</h4>
 
 <form action="/artworks" method="post">
   <label for="museum_id">Select a Museum</label>
@@ -24,10 +25,10 @@
 
   <button type="submit">Add art</button>
 </form>
-
+<hr>
 
 <% if @museums.any?() %>
-<p>Click on a museum to see its art:</p>
+<h4>Click on a museum to see its art:</h4>
 
 <ul>
   <% @museums.each do |museum| %>
@@ -35,5 +36,5 @@
   <% end %>
 </ul>
 <% else %>
-<p>There are no museums yet!</p>
+<h4>There are no museums yet!</h4>
 <% end %>

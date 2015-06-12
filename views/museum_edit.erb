@@ -1,5 +1,21 @@
 <h1>Update the <%=@museum.name() %> </h1>
 
+<hr>
+<h4>Yikes. No more money...</h4>
+<form action="/museums/<%= @museum.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Museum</button>
+</form>
+
+
+<hr>
+<h1>OR</h1>
+<hr>
+
+<h4>You found a wealthy patron.</h4>
+
+
 <form action="/museums/<%= @museum.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
@@ -9,12 +25,6 @@
   <button type="submit">Update</button>
 </form>
 
-<form action="/museums/<%= @museum.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete Museum</button>
-</form>
-
-
+<hr>
 
 <a href="/">Home</a>

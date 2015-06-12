@@ -75,9 +75,6 @@ delete("/museums/:id") do
   erb(:index)
 end
 
-
-
-
 post("/artworks") do
   description = params.fetch("description")
   museum_id = params.fetch("museum_id").to_i()
@@ -85,4 +82,8 @@ post("/artworks") do
   artwork.save()
   @museum = Museum.find(museum_id)
   erb(:museum)
+end
+
+get("/nope") do
+  erb(:nope)
 end
