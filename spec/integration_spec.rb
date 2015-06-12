@@ -38,3 +38,14 @@ describe('seeing art for a single museum', {:type => :feature}) do
     expect(page).to have_content(test_artwork.description())
   end
 end
+
+describe('adding museums', {:type => :feature}) do
+  it('allows a user to add a museum list') do
+    test_museum = Museum.new({:name => 'Boat Museum', :id => nil})
+    test_museum.save()
+    visit("/")
+    fill_in("name", {:with => "Boat Museum"})
+    click_button("Add museum")
+    expect(page).to have_content("Success!")
+  end
+end
