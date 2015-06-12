@@ -1,0 +1,16 @@
+<h1>Your Current Museums</h1>
+
+<% if @museums.any?() %>
+<h3>Here are your museums:</h3>
+
+<ul>
+  <% @museums.each() do |museum| %>
+  <li><a href="/lists/<%= museum.id() %>"><%= museum.name() %></a> </li>
+  <% end %>
+</ul>
+
+<% else %>
+
+<p>There are no museums yet!</p>
+
+<% end %>

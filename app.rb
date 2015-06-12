@@ -13,7 +13,7 @@ get("/") do
 end
 
 get("/museums/new") do
-  erb(:list_form)
+  erb(:museum_form)
 end
 
 post("/museums") do
@@ -21,4 +21,9 @@ post("/museums") do
   museum = Museum.new({:name => name, :id => nil})
   museum.save()
   erb(:success)
+end
+
+get('/museums') do
+  @museums = Museum.all
+  erb(:museums)
 end

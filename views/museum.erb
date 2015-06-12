@@ -1,0 +1,34 @@
+<h1><%= @museum.name() %>'s Art </h1>
+
+
+
+<% if @museum.artworks.any?() %>
+<h3>Here is the artwork for this museum:</h3>
+
+<ul>
+  <% @museum.artworks.each() do |artwork| %>
+  <li><% artwork.museum_id() %><%= artwork.description() %></li>
+  <% end %>
+</ul>
+
+<% else %>
+
+<p>There is no art yet yet!</p>
+
+<% end %>
+
+
+
+
+
+<hr>
+
+<!-- <div class="container">
+  <a href="/">Home |</a>
+  <a href="/lists"> View All Lists |</a>
+  <a href="/lists/new"> Add New List |</a>
+  <a href="/lists/:id/tasks/new"> Add New Task</a>
+</div> -->
+
+<p><a href="/museums/<%= @museum.id() %>/edit">Edit <%= @museum.name() %> museum</a></p>
+<p><a href="/">Return to Main Page</a></p>
