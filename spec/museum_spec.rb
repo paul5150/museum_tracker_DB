@@ -37,4 +37,26 @@ end
       expect(museum1).to(eq(museum2))
     end
    end
+
+   describe(".find") do
+     it("returns a museum by its ID") do
+       test_museum = Museum.new({:name => "Portland Art Museum", :id => nil})
+       test_museum.save()
+       test_museum2 = Museum.new({:name => "Boise Museum", :id => nil})
+       test_museum2.save()
+       expect(Museum.find(test_museum2.id())).to(eq(test_museum2))
+     end
+   end
+
+   describe("#artworks") do
+      it("returns an array of art for that museum") do
+        test_museum = Museum.new({:name => "Portland Art Museum", :id => nil})
+        test_museum.save()
+        test_artwork = Artwork.new({:description => "the painting", :museum_id => test_museum.id()})
+        test_artwork.save()
+        test_artwork2 = Artwork.new({:description => "the statue", :museum_id => test_museum.id()})
+        test_artwork2.save()
+        expect(test_museum.artworks()).to(eq([test_artwork, test_artwork2]))
+      end
+    end
  end

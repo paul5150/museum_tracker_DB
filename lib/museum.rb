@@ -25,4 +25,25 @@ class Museum
   define_method(:==) do |another_museum|
     self.name().==(another_museum.name()).&(self.id().==(another_museum.id()))
   end
+
+  define_singleton_method(:find) do |id|
+    found_museum = nil
+    Museum.all().each() do |museum|
+      if museum.id().==(id)
+        found_museum = museum
+      end
+    end
+    found_museum
+  end
+
+  define_method(:artworks) do
+    list_artworks = []
+    artworks = DB.exec("SELECT * FROM artworks WHERE list_id = #{self.id()};")
+    artworks.each() do |artwork|
+      description = artwork.fetch("description")
+      list_id = artwork.fetch("list_id").to_i()
+      list_artworks.push(Artwork.new({:description => description, :list_id => list_id}))
+    end
+    list_artworks
+  end
 end
